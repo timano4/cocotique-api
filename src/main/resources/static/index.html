@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CocoTique | Premium Brand</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #fffafa;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Smooth Nav Transition */
+        .nav-link {
+            position: relative;
+            transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-active {
+            color: #be185d !important;
+            font-weight: 700;
+        }
+
+        .nav-active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #be185d;
+            animation: slideIn 0.4s ease forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                width: 0;
+                opacity: 0;
+            }
+
+            to {
+                width: 100%;
+                opacity: 1;
+            }
+        }
+
+        /* Swiper & Images Custom */
+        .swiper-container-wrapper {
+            width: 100%;
+            max-width: 650px;
+            margin: auto;
+        }
+
+        .swiper-slide {
+            aspect-ratio: 1/1;
+            /* Tỉ lệ vuông trên mobile cho đẹp */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: 24px;
+            background-color: #fdf2f2;
+        }
+
+        @media (min-width: 768px) {
+            .swiper-slide {
+                aspect-ratio: 3/2;
+            }
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+
+        .swiper-slide-active img {
+            transform: scale(1.05);
+        }
+
+        .swiper-pagination-bullet-active {
+            background: #be185d !important;
+            width: 20px !important;
+            border-radius: 5px !important;
+            transition: all 0.3s ease;
+        }
+
+        /* Glassmorphism Buttons */
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #be185d !important;
+            background: rgba(255, 255, 255, 0.4) !important;
+            backdrop-filter: blur(8px);
+            width: 40px !important;
+            height: 40px !important;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+
+            .swiper-button-next,
+            .swiper-button-prev {
+                display: none;
+            }
+
+            /* Ẩn nút trên mobile cho gọn */
+        }
+
+        .video-gradient {
+            background: linear-gradient(to bottom, transparent 70%, #fffafa 100%);
+        }
+
+        .btn-premium {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-premium:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-premium:hover:after {
+            width: 300%;
+            height: 300%;
+        }
+
+        .reveal-text {
+            animation: reveal 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        @keyframes reveal {
+            0% {
+                transform: translateY(30px);
+                opacity: 0;
+                filter: blur(10px);
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+                filter: blur(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="text-stone-800">
+
+    <nav
+        class="fixed w-full z-50 px-4 md:px-8 py-3 md:py-4 bg-white/70 backdrop-blur-lg border-b border-pink-50 transition-all duration-500">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-2 md:gap-4">
+                <div class="text-lg md:text-xl font-serif font-bold tracking-tight text-pink-900 uppercase">COCOTIQUE
+                </div>
+                <div class="h-4 md:h-5 w-[1px] bg-stone-300"></div>
+                <img src="/images/logo-fpt.png" alt="FPTU" class="h-6 md:h-7 w-auto object-contain">
+            </div>
+            <div
+                class="flex items-center gap-4 md:gap-10 text-[9px] md:text-[10px] tracking-[0.1em] md:tracking-[0.2em] font-bold text-stone-400 uppercase">
+                <a href="#video" class="nav-link hidden sm:block">TEASER</a>
+                <a href="#product" class="nav-link">SẢN PHẨM</a>
+                <a href="#order" class="nav-link">MUA NGAY</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="video" class="relative h-screen w-full overflow-hidden">
+        <video autoplay muted loop playsinline
+            class="absolute inset-0 w-full h-full object-cover scale-110 animate-[slowZoom_20s_infinite_alternate]">
+            <source src="/videos/teaser.mp4" type="video/mp4">
+        </video>
+        <style>
+            @keyframes slowZoom {
+                from {
+                    transform: scale(1);
+                }
+
+                to {
+                    transform: scale(1.15);
+                }
+            }
+        </style>
+        <div class="absolute inset-0 video-gradient z-10"></div>
+        <div class="absolute inset-0 z-20 flex flex-col items-center justify-center text-white text-center px-4">
+            <h2 class="text-5xl md:text-9xl font-serif italic mb-4 drop-shadow-2xl reveal-text">Pure Love</h2>
+            <p class="text-[8px] md:text-[10px] tracking-[0.4em] md:tracking-[0.8em] uppercase font-light bg-black/10 px-6 md:px-10 py-3 backdrop-blur-md rounded-full reveal-text"
+                style="animation-delay: 0.3s;">
+                Vẻ đẹp từ tinh khiết
+            </p>
+        </div>
+    </section>
+
+    <section id="product" class="py-16 md:py-32 px-6 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
+            <div class="swiper-container-wrapper" data-aos="fade-up" data-aos-duration="1200">
+                <div class="swiper mySwiper shadow-2xl">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><img id="p-image-1" src="" alt="Ảnh 1"></div>
+                        <div class="swiper-slide"><img id="p-image-2" src="" alt="Ảnh 2"></div>
+                        <div class="swiper-slide"><img id="p-image-3" src="" alt="Ảnh 3"></div>
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+
+            <div class="space-y-6 md:space-y-10" data-aos="fade-up" data-aos-delay="200">
+                <div class="space-y-3 md:space-y-4">
+                    <span id="p-category"
+                        class="inline-block bg-pink-100 text-pink-700 px-4 py-1 rounded-full text-[9px] md:text-[10px] font-bold tracking-widest uppercase"></span>
+                    <h1 id="p-name" class="text-4xl md:text-6xl font-serif text-pink-950 leading-tight"></h1>
+                    <p id="p-tagline" class="text-xl md:text-2xl text-pink-400 font-light italic"></p>
+                </div>
+                <p id="p-desc"
+                    class="text-stone-500 leading-relaxed font-light text-sm md:text-base border-l-4 border-pink-100 pl-4 md:pl-8">
+                </p>
+                <div class="flex items-end gap-6 md:gap-8 pt-2 md:pt-4">
+                    <div class="flex flex-col">
+                        <span class="text-[9px] md:text-[10px] text-stone-400 uppercase tracking-widest mb-1">Giá Ưu
+                            Đãi</span>
+                        <span id="p-price" class="text-4xl md:text-5xl font-light text-stone-900"></span>
+                    </div>
+                    <span class="text-stone-300 line-through text-lg md:text-xl mb-1 md:mb-2">200.000đ</span>
+                </div>
+                <button onclick="document.getElementById('order').scrollIntoView({behavior: 'smooth'})"
+                    class="btn-premium w-full md:w-auto bg-pink-800 text-white px-10 md:px-16 py-4 md:py-5 rounded-full text-[10px] md:text-xs font-bold tracking-[0.2em] md:tracking-[0.3em] uppercase hover:bg-black transition-all shadow-xl shadow-pink-200">
+                    Trải nghiệm ngay
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="order" class="py-16 md:py-32 bg-[#fff5f6]">
+        <div class="max-w-2xl mx-auto px-4 md:px-6">
+            <div class="bg-white p-8 md:p-20 rounded-[2.5rem] md:rounded-[4rem] shadow-sm border border-pink-50"
+                data-aos="zoom-in-up" data-aos-duration="1000">
+                <h2 class="text-3xl md:text-4xl font-serif text-center text-pink-950 mb-8 md:mb-12">Thông tin đặt hàng
+                </h2>
+                <form id="orderForm" class="space-y-4 md:space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                        <input type="text" id="custName" placeholder="Tên của bạn" required
+                            class="w-full p-4 md:p-5 rounded-2xl bg-stone-50 border-none outline-none focus:ring-2 focus:ring-pink-200 transition-all text-sm">
+                        <input type="tel" id="custPhone" placeholder="Số điện thoại" required
+                            class="w-full p-4 md:p-5 rounded-2xl bg-stone-50 border-none outline-none focus:ring-2 focus:ring-pink-200 transition-all text-sm">
+                    </div>
+                    <textarea id="custAddr" placeholder="Địa chỉ nhận hàng đầy đủ" rows="3" required
+                        class="w-full p-4 md:p-5 rounded-2xl bg-stone-50 border-none outline-none focus:ring-2 focus:ring-pink-200 transition-all text-sm"></textarea>
+                    <button type="submit"
+                        class="btn-premium w-full bg-pink-900 text-white py-5 md:py-6 rounded-2xl font-bold text-[10px] md:text-xs tracking-[0.3em] hover:bg-black transition shadow-lg text-center uppercase">XÁC
+                        NHẬN GỬI</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <div id="successModal"
+        class="fixed inset-0 z-[100] hidden flex items-center justify-center px-4 transition-all duration-500 opacity-0">
+        <div class="absolute inset-0 bg-pink-900/20 backdrop-blur-sm"></div>
+        <div
+            class="relative bg-white p-8 md:p-10 rounded-[2.5rem] md:rounded-[3.5rem] shadow-2xl max-w-sm w-full text-center border border-pink-50 transform scale-90 transition-all duration-500">
+            <div
+                class="w-16 h-16 md:w-20 md:h-20 bg-pink-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                <span class="text-3xl md:text-4xl">🌸</span></div>
+            <h3 class="text-xl md:text-2xl font-serif text-pink-950 mb-2">Cảm ơn bạn!</h3>
+            <p class="text-stone-500 font-light text-xs md:text-sm mb-8 leading-relaxed">Đơn hàng của bạn đã được ghi
+                nhận thành công!</p>
+            <button onclick="closeModals()"
+                class="w-full bg-pink-800 text-white py-4 rounded-2xl font-bold text-xs uppercase shadow-lg">Đóng</button>
+        </div>
+    </div>
+
+    <div id="errorModal"
+        class="fixed inset-0 z-[100] hidden flex items-center justify-center px-4 transition-all duration-500 opacity-0">
+        <div class="absolute inset-0 bg-stone-900/20 backdrop-blur-sm"></div>
+        <div
+            class="relative bg-white p-8 md:p-10 rounded-[2.5rem] md:rounded-[3.5rem] shadow-2xl max-w-sm w-full text-center border border-red-50 transform scale-90 transition-all duration-500">
+            <div class="w-16 h-16 md:w-20 md:h-20 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                <span class="text-3xl md:text-4xl">⚠️</span></div>
+            <h3 class="text-xl md:text-2xl font-serif text-red-900 mb-2">Thông báo</h3>
+            <p id="errorMessage" class="text-stone-500 font-light text-xs md:text-sm mb-8 leading-relaxed"></p>
+            <button onclick="closeModals()"
+                class="w-full bg-stone-800 text-white py-4 rounded-2xl font-bold text-xs uppercase shadow-lg">Kiểm tra
+                lại</button>
+        </div>
+    </div>
+
+    <section class="py-16 md:py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-center">
+            <div class="space-y-6 text-center md:text-left" data-aos="fade-up">
+                <h3 class="font-serif text-2xl text-pink-900 italic">Cocotique Label</h3>
+                <div
+                    class="space-y-2 uppercase text-[9px] md:text-[10px] tracking-[0.2em] md:tracking-[0.3em] text-stone-500">
+                    <p class="font-serif text-pink-400 italic text-base capitalize tracking-normal">Big thanks to our
+                        dedicated lecturers and mentors</p>
+                    <p><span class="font-bold text-pink-700">Lecturer:</span> DuyVL</p>
+                    <p><span class="font-bold text-pink-700">Mentor:</span> DuyT4</p>
+                </div>
+                <div class="h-[1px] w-20 bg-pink-100 mx-auto md:mx-0"></div>
+                <p
+                    class="text-[9px] md:text-[10px] tracking-[0.1em] md:tracking-[0.2em] text-stone-400 leading-relaxed uppercase">
+                    Đại học FPT Cần Thơ<br>
+                    Số 600 đường Nguyễn Văn Cừ nối dài, An Bình, Ninh Kiều, Cần Thơ
+                </p>
+            </div>
+            <div class="w-full h-48 md:h-64 rounded-[2rem] overflow-hidden shadow-xl md:grayscale hover:grayscale-0 transition-all duration-1000 border border-pink-50"
+                data-aos="zoom-in">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.0533555516083!2d105.73030307584103!3d10.012452372810526!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a0890639720a77%3A0x3916a227d0b95a64!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBGUFQgQ-G6p24gVGjGoQ!5e0!3m2!1svi!2s!4v1715700000000!5m2!1svi!2s"
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer
+        class="py-8 md:py-10 text-center text-[8px] md:text-[10px] text-stone-300 tracking-[0.3em] md:tracking-[0.5em] uppercase border-t border-pink-50">
+        © 2026 CocoTique Creative Studio | FPT University
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        AOS.init({ once: false, mirror: true });
+
+        const swiper = new Swiper(".mySwiper", {
+            loop: true,
+            autoplay: { delay: 5000, disableOnInteraction: false },
+            effect: 'fade',
+            fadeEffect: { crossFade: true },
+            pagination: { el: ".swiper-pagination", clickable: true },
+            navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+        });
+
+        function closeModals() {
+            const modals = ['successModal', 'errorModal'];
+            modals.forEach(id => {
+                const el = document.getElementById(id);
+                el.style.opacity = '0';
+                el.children[1].style.transform = 'scale(0.9)';
+                setTimeout(() => el.classList.add('hidden'), 500);
+            });
+        }
+
+        function showModal(id) {
+            const el = document.getElementById(id);
+            el.classList.remove('hidden');
+            setTimeout(() => {
+                el.style.opacity = '1';
+                el.children[1].style.transform = 'scale(1)';
+            }, 10);
+        }
+
+        function showError(msg) {
+            document.getElementById('errorMessage').innerText = msg;
+            showModal('errorModal');
+        }
+
+        const sections = document.querySelectorAll("section");
+        const navLinks = document.querySelectorAll(".nav-link");
+        window.addEventListener("scroll", () => {
+            let current = "";
+            sections.forEach((section) => { if (pageYOffset >= section.offsetTop - section.clientHeight / 3) current = section.getAttribute("id"); });
+            navLinks.forEach((link) => { link.classList.remove("nav-active"); if (link.getAttribute("href").includes(current)) link.classList.add("nav-active"); });
+
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) { nav.classList.add('py-2', 'bg-white/90'); nav.classList.remove('py-4'); }
+            else { nav.classList.add('py-4'); nav.classList.remove('py-2', 'bg-white/90'); }
+        });
+
+        async function loadData() {
+            try {
+                const res = await fetch('/api/products');
+                const data = await res.json();
+                if (data.length > 0) {
+                    const p = data[0];
+                    document.getElementById('p-name').innerText = p.name;
+                    document.getElementById('p-tagline').innerText = p.tagline;
+                    document.getElementById('p-desc').innerText = p.description;
+                    document.getElementById('p-category').innerText = p.category;
+                    document.getElementById('p-price').innerText = new Intl.NumberFormat('vi-VN').format(p.price) + "đ";
+                    document.getElementById('p-image-1').src = p.imageUrl;
+                    document.getElementById('p-image-2').src = p.imageUrl2 || '/images/anh-them-1.jpg';
+                    document.getElementById('p-image-3').src = p.imageUrl3 || '/images/anh-them-2.jpg';
+                }
+            } catch (e) { }
+        }
+
+        document.getElementById('orderForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('custName').value.trim();
+            const phone = document.getElementById('custPhone').value.trim();
+            const addr = document.getElementById('custAddr').value.trim();
+
+            if (name.length < 2) return showError("Vui lòng nhập tên thật.");
+            if (!/^(0[3|5|7|8|9])+([0-9]{8})$/.test(phone)) return showError("Số điện thoại không hợp lệ.");
+            if (addr.length < 7) return showError("Địa chỉ vui lòng nhập chi tiết hơn.");
+
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbwcgtkbIvhlKc9uO8vZvYRlfHxTMCKZRDyWDeExGcVK3pDhuDu3d5v_ilAQxZQ0JYSV/exec';
+            const order = { customerName: name, phone: phone, address: addr, category: "Pink Collection" };
+
+            try {
+                fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify({ ...order, phone: "'" + phone }) });
+                const res = await fetch('/api/orders', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(order)
+                });
+
+                if (res.ok) {
+                    showModal('successModal');
+                    e.target.reset();
+                }
+            } catch (err) { showError("Lỗi kết nối máy chủ."); }
+        };
+
+        loadData();
+    </script>
+</body>
+
+</html>
