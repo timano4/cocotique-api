@@ -4,9 +4,9 @@ COPY . .
 RUN chmod +x mvnw
 RUN ./mvnw clean package -DskipTests
 
-# Thêm dòng này để đổi tên file jar cho cố định
-RUN mv target/*.jar app.jar
+# Lệnh quan trọng: Tìm file jar trong target và đổi tên nó thành app.jar
+RUN cp target/*.jar app.jar
 
 EXPOSE 8080
-# Chạy trực tiếp file app.jar đã đổi tên
+# Chạy trực tiếp file app.jar
 ENTRYPOINT ["java", "-jar", "app.jar"]
