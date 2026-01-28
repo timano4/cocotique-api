@@ -60,11 +60,22 @@
             }
         }
 
-        /* Swiper & Images Custom */
+        /* Swiper & Images Custom - FIXED TRIỆT ĐỂ */
         .swiper-container-wrapper {
             width: 100%;
             max-width: 650px;
             margin: auto;
+            background-color: transparent;
+            /* Đảm bảo wrapper không có nền trắng */
+        }
+
+        .swiper {
+            border-radius: 24px;
+            overflow: hidden;
+            background-color: #fffafa;
+            /* TRÙNG MÀU NỀN TRANG WEB */
+            transform: translateZ(0);
+            /* Fix lỗi Safari */
         }
 
         .swiper-slide {
@@ -73,11 +84,13 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            /* DÒNG QUAN TRỌNG: Để cắt bỏ phần góc nhọn của ảnh chòi ra */
             border-radius: 24px;
-            background-color: #fdf2f2;
-            /* Thêm mask để đảm bảo bo cong mượt trên mọi trình duyệt */
-            -webkit-mask-image: -webkit-radial-gradient(white, black);
+            background-color: transparent !important;
+            /* Xóa màu nền riêng của slide */
+
+            /* Ép bo cong bằng Clip-path (Vũ khí cuối cùng) */
+            clip-path: inset(0 round 24px);
+            -webkit-clip-path: inset(0 round 24px);
         }
 
         @media (min-width: 768px) {
@@ -92,6 +105,7 @@
             object-fit: cover;
             border-radius: 24px;
             transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+            display: block;
         }
 
         .swiper-slide-active img {
